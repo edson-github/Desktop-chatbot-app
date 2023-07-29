@@ -37,10 +37,9 @@ class Chatbot:
 
     def reply_to_you(self, event=None):
         message = self.Message_Entry.get().lower()
-        message = 'you: ' + message+'\n'
-        close_match = get_close_matches(message, self.Brain.keys())
-        if close_match:
-            reply = 'Iris: ' + self.Brain[close_match[0]][0] + '\n'
+        message = f'you: {message}' + '\n'
+        if close_match := get_close_matches(message, self.Brain.keys()):
+            reply = f'Iris: {self.Brain[close_match[0]][0]}' + '\n'
         else:
             reply = 'Iris: ' + 'Cant it in my knowledge base\n'
         self.add_chat(message)
